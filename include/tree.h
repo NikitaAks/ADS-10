@@ -7,11 +7,11 @@
 #include <string>
 class Tree {
  private:
-    struct NodeT {
-        std::vector<NodeT*> dot;
-        char value;
+    struct NodeDr {
+        std::vector<NodeDr*> dot;
+        char val_dr;
     };
-    NodeT* root;
+    NodeDr* root;
     std::vector <char> val;
     std::vector<char> displace;
     std::string cell;
@@ -22,17 +22,17 @@ class Tree {
         val = in;
         cell.resize(in.size());
         displace.resize(in.size());
-        NodeT* root = new NodeT;
-        root->value = '*';
+        NodeDr* root = new NodeDr;
+        root->val_dr = '*';
         displacement(in, -1, 0, root);
     }
 
-    NodeT* addNodeT(char value) {
-        NodeT* temp = new NodeT;
-        temp->value = value;
+    NodeDr* addNodeDr(char val_dr) {
+        NodeDr* temp = new NodeDr;
+        temp->val_dr = val_dr;
         return temp;
     }
-    void displacement(std::vector<char> in, int c, int number, NodeT* root) {
+    void displacement(std::vector<char> in, int c, int number, NodeDr* root) {
         if (in.size() == 1) {
             result.push_back(displace);
             return;
@@ -43,7 +43,7 @@ class Tree {
             in.erase(iter + c);
         }
         for (int i = 0; i < in.size(); i++) {
-            root->dot.push_back(addNodeT(in[i]));
+            root->dot.push_back(addNodeDr(in[i]));
             displace[number] = in[i];
             displacement(in, i, number, root->dot[i]);
         }
